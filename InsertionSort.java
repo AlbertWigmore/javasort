@@ -2,21 +2,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class BubbleSort {
+public class InsertionSort {
   public static <T extends Comparable<T>> void sort(List<T> unsorted) {
-    boolean swapped = false;
-    do {
-      swapped = false;
-      for (int i = 1; i < unsorted.size(); i++) {
-        if (unsorted.get(i-1).compareTo(unsorted.get(i)) > 0) {
-          T temp = unsorted.get(i-1);
-          unsorted.set(i-1, unsorted.get(i));
-          unsorted.set(i, temp);
-          swapped = true;
-        }
+    int i = 1;
+    while (i < unsorted.size()) {
+      T x = unsorted.get(i);
+      int j = i - 1;
+      while (j >= 0 && unsorted.get(j).compareTo(x) > 0) {
+        unsorted.set(j+1, unsorted.get(j));
+        j = j - 1;
       }
+      unsorted.set(j+1, x);
+      i = i + 1;
     }
-    while (swapped);
   }
 
   public static void main(String[] args) {
